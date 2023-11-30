@@ -7,6 +7,7 @@ import { generateUUID } from "../services/helper";
 import dayjs from "dayjs";
 import Mailer from "../services/Mailer";
 import { Response, Request } from "../../type"; 
+import { view } from "../services/View";
 
 class AuthController {
    public async registerPage(request : Request, response: Response) {
@@ -20,7 +21,7 @@ class AuthController {
    public async homePage(request : Request, response: Response) {
 
 
-      return response.inertia("home");
+      return response.type("html").send(view("home.html"));
 
      
    }
@@ -199,7 +200,7 @@ Jika anda tidak merasa melakukan reset password, abaikan pesan  ini.
             email: email,
             password: await Authenticate.hash(email),
             name: name,
-            is_verified: verified_email,
+            is_verified: false,
             created_at: dayjs().valueOf(),
             updated_at: dayjs().valueOf(),
          };

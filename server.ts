@@ -99,8 +99,9 @@ webserver
 webserver
 .listen(PORT).then(()=>{
     console.log(`Server is running at http://localhost:${PORT}`);
-}).catch((err: any) => {
+})
 
-
- 
-}) 
+process.on('SIGTERM', () => {
+    console.info('SIGTERM signal received.');
+    process.exit(0);
+  });

@@ -34,6 +34,8 @@ try {
     entryPoints: ['./resources/js/app.js'],
     mainFields: ["svelte", "browser", "module", "main"],
     conditions: ["svelte", "browser"],
+    loader: {'.svg': 'text'},
+
     bundle: true,
     minify: false,
     write: false,
@@ -47,7 +49,8 @@ try {
 
   const out = result.outputFiles;
 
-  let manifest = `{ `;
+  let manifest = `{
+    "style.css" : "http://localhost:${port}/style.css",`;
 
   let count = 0;
 
@@ -66,6 +69,7 @@ try {
     manifest += `"${filename}": "http://localhost:${port}/${filename}"${count < out.length  ? "," : ""}`
    
   }
+  
 
   
 
@@ -73,9 +77,7 @@ try {
   {
     console.log("compile done, pushing change...")
 
-    Object.keys(sse_streams).forEach((id) => {
-      sse_streams[id].send("reload");
-  })
+    ReloadPage();
 
   }
   
@@ -85,7 +87,7 @@ try {
  
   if(init)
   { 
-    writeFileSync( "./public/assets/manifest.json", manifest)
+    writeFileSync( "./public/manifest.json", manifest)
   }
 
 } 
@@ -98,9 +100,16 @@ try {
 }
 
 
+function ReloadPage()
+{ 
+  Object.keys(sse_streams).forEach((id) => {
+    sse_streams[id].send("reload");
+})
+}
+
 import chokidar from "chokidar"
 
-var watcher = chokidar.watch('resources/js', { ignored: /^\./, persistent: true });
+var watcher = chokidar.watch('resources', { ignored: /^\./, persistent: true });
 
 watcher
   .on('ready', ()=>{
@@ -108,9 +117,23 @@ watcher
     Build(true)
   })
   .on('change', (path) => {
+    console.log('File', path, 'has been changed'); 
+    if(path.includes(".svelte") || path.includes(".js"))
+    {
+      Build(false)
+    }
 
-    console.log('File', path, 'has been changed');
-    Build()
+    // console.log(path)
+    // if(path.includes("/views/") && path.includes(".svelte"))
+    // {
+    //   Compile(path);
+    //   console.log("compile views")
+    // }
+
+    if(path.includes(".html"))
+    {
+      ReloadPage();
+    }
   })
 
 import HyperExpress from 'hyper-express';
@@ -178,6 +201,8 @@ webserver.get('*', (request, response) => {
 
 });
 
+
+ 
 // Activate webserver by calling .listen(port, callback);
 webserver.listen(port)
   .then((socket) => console.log('Webserver started on  http://localhost:' + port))

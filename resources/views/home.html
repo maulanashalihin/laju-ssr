@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      {{@include('head.html',it) /}}
+   </head>
+   <body>
+      <div class="max-w-6xl grid md:grid-cols-3 mx-auto">
+         <div class="md:col-span-2 p-6">
+            <div class="flex justify-between">
+               <h1 class="lg:text-3xl text-xl font-semibold">Opini Anda</h1>
+               <div>
+                  <button
+                     class="bg-orange-500 text-white px-4 py-2 rounded-full"
+                  >
+                     Tulis Opini
+                  </button>
+               </div>
+            </div>
+
+            <div>
+               <!--
+  Heads up! 👋
+
+  Plugins:
+    - @tailwindcss/forms
+-->
+
+               <div>
+                
+                  <div class="">
+                     <div class="border-b border-gray-200">
+                        <nav class="-mb-px flex gap-6" aria-label="Tabs">
+                           <a
+                              href="#"
+                              class="shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                           >
+                              Settings
+                           </a>
+
+                           <a
+                              href="#"
+                              class="shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                           >
+                              Messages
+                           </a>
+
+                           <a
+                              href="#"
+                              class="shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                           >
+                              Archive
+                           </a>
+
+                           <a
+                              href="#"
+                              class="shrink-0 border-b-2 border-orange-500 px-1 pb-4 text-sm font-medium text-orange-600"
+                              aria-current="page"
+                           >
+                              Notifications
+                           </a>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="lg:min-h-screen lg:border-l p-6">halo</div>
+      </div>
+   </body>
+</html>

@@ -46,7 +46,35 @@ Route.post("/auth/change-password",AuthController.changePassword)
 Route.get("/",async (req : Request,res : Response)=>{  
 
 
-    return res.type("html").send(view("index.html"))
+    return res.type("html").send(view("index.html",{
+        name : "Maulana Malik Ibrahim",
+        "phone" : "08123456789",
+    }))
+  
+}) 
+
+Route.get("/page",async (req : Request,res : Response)=>{  
+
+
+ 
+
+    return res.type("html").send(view("page.html",{
+        svelte_component : "App.svelte",
+    }))
+  
+}) 
+
+Route.get("/page-writer",async (req : Request,res : Response)=>{  
+
+
+    return res.inertia("page-writer")
+  
+}) 
+
+Route.get("/editor",async (req : Request,res : Response)=>{  
+
+
+    return   res.type("html").send(view("editor.html"))
   
 }) 
 

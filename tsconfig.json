@@ -109,5 +109,6 @@
 
     
   },
-  "include": ["**/*"]
+  "include": ["**/*"],
+  "exclude": ["node_modules", "build","cache-view/*","resources"]
 }

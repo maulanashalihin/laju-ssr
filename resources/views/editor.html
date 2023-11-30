@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+	Copyright (c) 2014-2023, CKSource Holding sp. z o.o. All rights reserved.
+	This file is licensed under the terms of the MIT License (see LICENSE.md).
+-->
+
+<html lang="en" dir="ltr">
+   <head>
+      <title>Editor</title>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+     
+      {{@include('head.html',it) /}}
+      <link rel="stylesheet" type="text/css" href="/lib/styles.css?1" /> 
+     <script src="/lib/ckeditor.js"></script>
+   </head>
+   <body
+      data-editor="DecoupledEditor"
+      data-collaboration="false"
+      data-revision-history="false"
+   >
+      <div id="editor"></div>
+   
+      <script>
+        setTimeout(()=>{
+         new Editor({
+            target: document.querySelector("#editor"),
+         });
+        },100)
+      </script>
+   </body>
+</html>

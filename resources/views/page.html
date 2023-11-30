@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      {{@include('head.html',it) /}}
+   </head>
+   <body>
+      <div class="max-w-2xl mx-auto p-6">
+         <div>
+            <img
+               id="thumbnail"
+               src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ePk1hAd7QyAik-0OTkYBmQ.png"
+               alt=""
+            />
+         </div>
+         <div class="py-4">
+            <h1 class="font-extrabold text-4xl">
+               Node.js vs Deno vs Bun: Native HTTP hello world server
+               benchmarking
+            </h1>
+         </div>
+         <div id="profile" class="py-1 flex gap-2">
+            <div>
+               <div
+                  class="h-12 w-12 rounded-full bg-red-500 text-white flex justify-center items-center"
+               >
+                  MS
+               </div>
+            </div>
+            <div>
+               <div class="flex gap-1">
+                  <span class="text-gray-700">Maulana Shalihin ·</span>
+                  <button class="text-green-500">Follow</button>
+               </div>
+               <div class="text-sm text-gray-500">
+                  <div>Published in Tech Tonic · 4 min read · Sep 12</div>
+               </div>
+            </div>
+           
+         </div>
+        
+         <div class="my-4">
+            <div class="space-y-3">
+                <h1 class="font-bold text-xl">Introduction</h1>
+                <p  class="font-serif" data-selectable-paragraph="">This article responds to one of the most frequently requested updates: a fresh comparison of technologies like Deno and Bun, which have recently enhanced their server capabilities. Deno, starting from version 1.36, has introduced a highly efficient HTTP server called “flash,” while Bun has reached its 1.0 release milestone, boasting improved performance and reduced resource consumption. Node.js, the king of JS runtimes, doesn’t even bother to offer anything faster than what they’ve. Given these significant developments, at least on Deno and Bun, it’s evident that an updated comparison is long overdue.</p>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

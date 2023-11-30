@@ -1,13 +1,12 @@
 import { readFileSync, readdirSync, statSync } from "fs";
-import * as Sqrl from "squirrelly";
 const manifest = require("../../public/manifest.json");
 import path from "path";
 
 let html_files = {} as {
    [key: string]: string;
 };
-
-function importFiles(directory = "resources/views") {
+ 
+function importFiles(directory = "resources/cache-view") {
    const files = readdirSync(directory);
 
    for (const filename of files) {
@@ -18,34 +17,30 @@ function importFiles(directory = "resources/views") {
       } else {
          const html = readFileSync(path.join(directory, filename), "utf8");
 
-         if (directory == "resources/views/partials") {
-            console.log(filename)
-            Sqrl.templates.define(filename, Sqrl.compile(html));
-         }
-
          html_files[directory + "/" + filename] = html;
       }
    }
 }
 export function view(filename: string, view_data?: any) {
-   let directory = "resources/views";
+   let directory = "resources/cache-view";
 
    const keys = Object.keys(view_data || {});
 
-   let html =
-      process.env.CACHE_VIEW == "true"
-         ? html_files[directory + "/" + filename]
-         : readFileSync(path.join(directory, filename), "utf8");
+   let html = process.env.CACHE_VIEW == "true" ?  html_files[directory + "/" + filename] : readFileSync(path.join(directory, filename), "utf8");;
+   
+   Object.keys(manifest).forEach(filename=>{
+      html = html.replace(`{${filename}}`,manifest[filename])
+   })
 
-   html = Sqrl.render(html, {
-      ...view_data,
-      ...manifest,
+   keys.forEach((key) => {
+      html = html.replace(`{${key}}`, view_data[key]);
    });
 
-   if (process.env.NODE_ENV == "development") {
-      html = html.replace(
-         "</head>",
-         `
+
+
+   if(process.env.NODE_ENV == 'development')
+   {
+      html = html.replace("</body>",`
       <script>
       var evtSource = new EventSource('http://localhost:8001/subscribe');
 
@@ -56,10 +51,10 @@ export function view(filename: string, view_data?: any) {
          }
       };
       </script>
-      </head>
-      `
-      );
+      </body>
+      `)
    }
+   
 
    return html;
 }

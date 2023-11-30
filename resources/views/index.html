@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{style.css}">
+    {{@include('head.html',it) /}}
+
 </head>
-<body class="bg-red-100 italic">
-    keren banget
+<body  >
+    keren banget {{it.name}}. Mantap banget {{it.phone}}
+    <div>
+      gajah
+    </div>
+   
+    <a  href="/editor">editor</a>
 </body>
 </html>
