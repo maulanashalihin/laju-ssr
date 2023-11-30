@@ -1,6 +1,5 @@
 require('dotenv').config()
-
-import inertia from "./app/middlewares/inertia";
+ 
 
 import Web from "./routes/web"; 
 
@@ -16,21 +15,10 @@ const LiveDirectory = require('live-directory');
 import "./app/services/View";
  
 // 
-
- 
-
 var cors = require('cors') 
 
 webserver.use(cors())
-
-
  
-  
-
-webserver.use(
-    inertia()
-);
-
 webserver.use(Web); 
 
 const LiveAssets = new LiveDirectory(__dirname+"/public",{  // We want to provide the system path to the folder. Avoid using relative paths.
