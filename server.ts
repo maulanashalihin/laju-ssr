@@ -13,12 +13,18 @@ const LiveDirectory = require('live-directory');
 
 //  rendering html files
 import "./app/services/View";
+import attach_view from "./app/middlewares/attach_view";
  
 // 
+
+ 
+
 var cors = require('cors') 
 
 webserver.use(cors())
- 
+
+webserver.use(attach_view());
+
 webserver.use(Web); 
 
 const LiveAssets = new LiveDirectory(__dirname+"/public",{  // We want to provide the system path to the folder. Avoid using relative paths.

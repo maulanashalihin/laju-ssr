@@ -19,7 +19,6 @@ function importFiles(directory = "resources/views") {
          const html = readFileSync(path.join(directory, filename), "utf8");
 
          if (directory == "resources/views/partials") {
-            console.log(filename)
             Sqrl.templates.define(filename, Sqrl.compile(html));
          }
 
@@ -32,10 +31,14 @@ export function view(filename: string, view_data?: any) {
 
    const keys = Object.keys(view_data || {});
 
-   let html =
-      process.env.CACHE_VIEW == "true"
-         ? html_files[directory + "/" + filename]
-         : readFileSync(path.join(directory, filename), "utf8");
+   let html;
+
+   if (process.env.NODE_ENV == "development") {
+      importFiles("resources/views/partials");
+      html = readFileSync(path.join(directory, filename), "utf8");
+   } else {
+      html = html_files[directory + "/" + filename];
+   }
 
    html = Sqrl.render(html, {
       ...view_data,

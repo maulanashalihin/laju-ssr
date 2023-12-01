@@ -9,6 +9,8 @@ export async function up(knex: Knex): Promise<void> {
         table.string('title')  
         table.text('content')
         table.string("thumbnail");
+        table.string("thumbnail_title");
+        table.string("thumbnail_description");
         table.string("author_id").index();
         table.string("author_name");
         table.integer("views").defaultTo(0);
@@ -25,6 +27,7 @@ export async function up(knex: Knex): Promise<void> {
         /**
          * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
          */
+        table.bigInteger("published_at")
         table.bigInteger("created_at")
         table.bigInteger("updated_at")
       

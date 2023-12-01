@@ -130,6 +130,7 @@ watcher
     //   console.log("compile views")
     // }
 
+    console.log(path.includes(".html"))
     if(path.includes(".html"))
     {
       ReloadPage();

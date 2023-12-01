@@ -21,7 +21,7 @@ class AuthController {
    public async homePage(request : Request, response: Response) {
 
 
-      return response.type("html").send(view("home.html"));
+      return response.view("home.html")
 
      
    }

@@ -7,11 +7,12 @@
 //     new App({ target: el, props })
 //   },
 // })
- 
+
 // import "./index.css" 
 
-import Editor from "./Components/Editor.svelte" 
- 
+import Editor from "./Components/Editor.svelte"
+import ListPost from "./Components/ListPost.svelte"
 
 window.Editor = Editor
+window.ListPost = ListPost
 

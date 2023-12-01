@@ -7,60 +7,33 @@
       {{@include('head.html',it) /}}
    </head>
    <body>
-    {{@include('navbar-auth.html',it) /}}
+    {{@include('navbar.html',it) /}}
+  
       <div class="max-w-6xl grid md:grid-cols-3 mx-auto">
          <div class="md:col-span-2 p-6">
             <div class="flex justify-between">
                <h1 class="lg:text-3xl text-xl font-semibold">Opini Anda</h1>
                <div>
-                  <button
+                  <a href="/auth/write"
                      class="bg-orange-500 text-white px-4 py-2 rounded-full"
                   >
                      Tulis Opini
-                  </button>
+               </a>
                </div>
             </div>
 
             <div>
-               <!--
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
--->
-
-               <div>
-                  <div class="mt-5">
-                     <div class="border-b border-gray-200">
-                        <nav class="-mb-px flex gap-6" aria-label="Tabs">
-                           <a
-                              href="#"
-                              class="shrink-0 border-b-2 border-orange-500 px-1 pb-4 text-sm text-orange-600"
-                              aria-current="page"
-                           >
-                              Draft
-                           </a>
-
-                           <a
-                              href="#"
-                              class="shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                           >
-                              Published
-                           </a>
-
-                           <a
-                              href="#"
-                              class="shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                           >
-                              Rejected
-                           </a>
-                        </nav>
-                     </div>
-                  </div>
-               </div>
+               
+               <div id="list-post"></div>
+               
             </div>
          </div>
          <div class="lg:min-h-screen lg:border-l p-6">halo</div>
       </div>
+      <script>
+        new ListPost({
+             target: document.querySelector("#list-post"),
+          });
+       </script>
    </body>
 </html>

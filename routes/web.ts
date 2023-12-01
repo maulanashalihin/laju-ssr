@@ -1,4 +1,5 @@
 import AuthController from "../app/controllers/AuthController"; 
+import PostController from "../app/controllers/PostController";
 import Auth from "../app/middlewares/auth"
 import { view } from "../app/services/View";
 
@@ -41,6 +42,8 @@ Route.get("/auth/profile",AuthController.profilePage)
 Route.post("/auth/change-profile",AuthController.changeProfile)
 
 Route.post("/auth/change-password",AuthController.changePassword)
+
+Route.post("/auth/api/post",PostController.store)
  
 
 Route.get("/",async (req : Request,res : Response)=>{  
@@ -64,17 +67,12 @@ Route.get("/page",async (req : Request,res : Response)=>{
   
 }) 
 
-Route.get("/page-writer",async (req : Request,res : Response)=>{  
+ 
+
+Route.get("/auth/write",async (req : Request,res : Response)=>{  
 
 
-    return res.inertia("page-writer")
-  
-}) 
-
-Route.get("/editor",async (req : Request,res : Response)=>{  
-
-
-    return   res.type("html").send(view("editor.html"))
+    return   res.view("editor.html")
   
 }) 
 
