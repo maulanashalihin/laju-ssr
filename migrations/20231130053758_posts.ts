@@ -4,15 +4,16 @@ import { Knex } from "knex";
 export async function up(knex: Knex): Promise<void> {
     await knex.schema.createTable('posts', function (table) {
         table.string('id').primary().notNullable()
-        table.string("slug").unique();
+        table.string("url").unique();
         table.string("category").index();
         table.string('title')  
         table.text('content')
+        table.text('content_string')
         table.string("thumbnail");
         table.string("thumbnail_title");
         table.string("thumbnail_description");
-        table.string("author_id").index();
-        table.string("author_name");
+        table.string("portal_id").index();
+        table.string("portal_name");
         table.integer("views").defaultTo(0);
         table.integer("likes").defaultTo(0);
         table.integer("comments").defaultTo(0);

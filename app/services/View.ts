@@ -32,6 +32,7 @@ export function view(filename: string, view_data?: any) {
    const keys = Object.keys(view_data || {});
 
    let html;
+ 
 
    if (process.env.NODE_ENV == "development") {
       importFiles("resources/views/partials");
@@ -39,11 +40,11 @@ export function view(filename: string, view_data?: any) {
    } else {
       html = html_files[directory + "/" + filename];
    }
-
+ 
    html = Sqrl.render(html, {
       ...view_data,
       ...manifest,
-   });
+   });;
 
    if (process.env.NODE_ENV == "development") {
       html = html.replace(
